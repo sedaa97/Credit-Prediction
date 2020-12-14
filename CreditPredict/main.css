@@ -1,0 +1,31 @@
+
+body {
+	font-family:'Andika New Basic', sans-serif;
+	height:100vh;
+	float: left;
+    width: 60%; 
+    font-size: 20px;
+    font-weight: bold;
+    text-align: justify;
+	position:absolute;
+    left:100px;
+    top:5px;
+	padding:20px;	
+    background-image: url('back.jpg');
+    background-size: cover;
+	background-repeat:no-repeat;
+    background-attachment:fixed;
+
+}
+
+ h1 {
+	color: white;
+	font-size:4vw;	
+ }
+
+#prediction{
+  font-size:20px;
+  color:white;
+  font-family: cursive;
+}
+

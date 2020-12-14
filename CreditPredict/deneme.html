@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Kredi Tahmini</title>
+<link rel="stylesheet" href="main.css" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <form>
+        <div class="container  col-sm-12 col-lg-6 col-xl-6">
+            <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <h1>Kredi Tahmin Aracı</h1>
+                  </div>
+                </div>
+              </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                    <label style="color: white; font-family: Lato; font-size: 15px; line-height: 20px; text-align: left;" for="miktar"><b>Kredi Miktarı : <span style="color: red;">*</span></b></label>
+                    <input type="text" class="form-control" id="miktar"  maxlength="16" placeholder="Çekilecek Kredi Miktarı(TL)" >
+                    <label style="color: red; font-family: Lato; font-size: 12px; line-height: 14px; text-align: left;" id="miktaruyarı"> </label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label style="color: white; font-family: Lato; font-size: 15px; line-height: 20px; text-align: left;" for="yas"><b>Yaş : <span style="color: red;">*</span> </b></label>
+                        <input type="text" class="form-control" id="yas" maxlength="16" placeholder="Yaşınız">
+                        <label style="color: red; font-family: Lato; font-size: 12px; line-height: 14px; text-align: left;" id="yasuyarı"> </label>
+                    </div>
+                  </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                    <div class="form-group">
+                    <label style="color: white; font-family: Lato; font-size: 15px; line-height: 20px; text-align: left;" for="ev"><b>Ev durumunuz: <span style="color: red;">*</span></b></label>
+                    <input type="text" class="form-control" id="ev"  maxlength=40, placeholder="kiracı/evsahibi">
+                    <label style="color: red; font-family: Lato; font-size: 12px; line-height: 14px; text-align: left;" id="evuyarı"> </label>
+                </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                    <label style="color: white; font-family: Lato; font-size: 15px; line-height: 20px; text-align: left;" for="kredi"><b>Kredi Sayısı: <span style="color: red;">*</span></b></label>
+                    <input type="text" class="form-control" id="kredi"  maxlength=40, placeholder="Önceden çekilen kredi sayısı">
+                    <label style="color: red; font-family: Lato; font-size: 12px; line-height: 14px; text-align: left;" id="krediuyarı"> </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                    <label style="color: white; font-family: Lato; font-size: 15px; line-height: 20px; text-align: left;" for="tel"><b>Telefon: <span style="color: red;">*</span></b></label>
+                    <input type="text" class="form-control" id="tel"  maxlength=40, placeholder="var/yok">
+                    <label style="color: red; font-family: Lato; font-size: 12px; line-height: 14px; text-align: left;" id="teluyarı"> </label>
+                </div>
+                </div>
+             </div>
+            <div class="row">
+                <div style="text-align: center;" class="col">
+                     <div class="form-group">
+                     <button class="btn btn-success btn-lg  left-block" id="gonder" type="button">GÖNDER</button>
+                     </div>
+                 </div>
+             </div>
+			<div class="row">
+                <div class="col">
+                    <div class="form-group">
+                    <p style="font-size: 16px; color: white;">Sonuç: <span id="prediction"></span></p>
+               </div>
+            </div>
+        </div>
+    </form>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"> </script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"> </script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script>
+$('#gonder').click(function () {
+        console.log('butona tıklandı');
+        var sorunvarmi = false;
+        if ($("#miktar").val().length < 1) {
+            $("#miktaruyarı").text("Lütfen kredi miktarını girin");  
+            sorunvarmi = true;  
+        }
+        else
+        {
+            $("#miktaruyarı").empty();
+        }
+        if ($("#yas").val().length < 1) {
+            $("#yasuyarı").text("Lütfen yaşınızı girin");    
+            sorunvarmi = true;  
+        }
+        else
+        {
+            $("#yasuyarı").empty();
+        }
+        if ($("#ev").val().length < 1) {
+            $("#evuyarı").text("Lütfen kiracı/ev sahibi durumunu girin");
+            sorunvarmi = true;  
+        }
+        else
+        {
+            $("#evuyarı").empty();
+        }
+        if ($("#kredi").val().length < 1) {
+            $("#krediuyarı").text("Lütfen daha önce çektiğiniz kredi sayısını girin");
+            sorunvarmi = true;  
+        }
+        else
+        {
+            $("#krediuyarı").empty();
+        }
+        if ($("#tel").val().length < 1) {
+            $("#teluyarı").text("Lütfen telefon durumunu girin");
+            sorunvarmi = true;  
+        }
+        else
+        {
+            $("#teluyarı").empty();
+        }
+
+        if(sorunvarmi == false)
+        {
+        let message = {
+		miktar: $("#miktar").val(),
+		yas: $("#yas").val(),
+		ev: $("#ev").val(),
+		kredisayisi: $("#kredi").val(),
+		tel: $("#tel").val()
+	   }
+	      $.post("http://127.0.0.1:5000/predict", JSON.stringify(message), function(response){
+	      $("#prediction").text(response.prediction);
+         });
+		}
+		
+    });
+</script>
+</body>
+</html>
